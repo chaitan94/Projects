@@ -1,34 +1,20 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int *fibbo = (int *)calloc(200*sizeof(int));
-
-int fibb(int n){
-	if(fibbo[n])
-		return fibbo[n];
-	else {
-		if(n<=1){
-			fibbo[n] = 1;
-		}
-		else{
-			fibbo[n] = fibb(n-1)+fibb(n-2);
-		}
-		return fibbo[n];
+unsigned long long fibb(unsigned long long n){
+	unsigned long long a=1;
+	unsigned long long b=1;
+	while(n-->2){
+		b=a+b;
+		a=b-a;
 	}
-}
-
-void printFibbUpto(int n){
-	int i = 0;
-	for (i = 0; i < n; ++i)
-	{
-		printf("%d\n", fibb(i));
-	}
+	return b;
 }
 
 int main(){
-	int n;
+	unsigned long long n;
 	printf("Enter an integer: ");
-	scanf("%d", &n);
-	printFibbUpto(n);
+	scanf("%lld", &n);
+	printf("%lld",fibb(n));
 	return 0;
 }
